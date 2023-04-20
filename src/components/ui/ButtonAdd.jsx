@@ -1,27 +1,16 @@
 import React from "react";
+import useActivityStore from "../../store/activity";
 import iconPlus from "../../assets/iconplus.svg";
 
 const baseUrl = import.meta.env.VITE_END_POINT;
 const email = import.meta.env.VITE_EMAIL_DEV;
 const ButtonAdd = ({ DataCy }) => {
+  const { addActivity } = useActivityStore()
   const handleSubmit = () => {
-    let data;
     if (DataCy === "activity-add-button") {
-      data = {
-        title:'New Activity',
-        email:email
-      }
-      fetch(`${baseUrl}/activity-groups`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      })
-        .then((response) => response.json())
-        .catch((error) => {
-          console.log(error);
-        });
+      addActivity()
     } else {
-      return
+      return ;
     }
   };
   return (
