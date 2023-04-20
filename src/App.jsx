@@ -14,7 +14,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path='/' element={<ActivityHome/>}></Route>
-            <Route path='detail:id' element={<ActivityDetails/>}></Route>
+            <Route path='detail/:id' element={<ActivityDetails/>}></Route>
           </Routes>
         </BrowserRouter>
   

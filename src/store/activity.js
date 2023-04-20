@@ -14,7 +14,7 @@ const useActivityStore = create((set) => ({
         method: "DELETE",
       });
       const data = await response.json();
-      console.log(data); // Optional: Log the response data
+      // console.log(data);
       set((state) => ({
         activities: state.activities.filter((activity) => activity.id !== id),
         message: 'Activity berhasil dihapus'
@@ -39,7 +39,7 @@ const useActivityStore = create((set) => ({
   addActivity: async () => {
     try {
       const response = await fetch(
-        "https://todo.api.devcode.gethired.id/activity-groups",
+        `${baseUrl}/activity-groups`,
         {
           method: "POST",
           headers: {
@@ -51,7 +51,15 @@ const useActivityStore = create((set) => ({
 
       const data = await response.json();
       set((state) => ({ activities: [data, ...state.activities] }));
-      console.log("Item added successfully!");
+      // console.log("Item added successfully!");
+    } catch (error) {
+      console.error(error);
+    }
+  },
+  fetchItemById: async (id) => {
+    try {
+      const response = await axios.get(`https://your-api-url.com/items/${id}`);
+      set({ item: response.data });
     } catch (error) {
       console.error(error);
     }
