@@ -12,7 +12,14 @@ export default {
       danger: '#ED4C5C',
       'white': '#ffffff',
       'gray1': '#888888',
-      'black':'#000000'
+      'gray2': '#E5E5E5',
+      'black':'#000000',
+      'very-high':'#ED4C5C',
+      'high':'#F8A541',
+      'normal':'#00A790',
+      'low':'#428BC1',
+      'very-low':'#8942C1'
+      
     },
     extend: {
       gridTemplateColumns: {

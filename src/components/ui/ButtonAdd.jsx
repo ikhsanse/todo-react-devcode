@@ -4,19 +4,19 @@ import iconPlus from "../../assets/iconplus.svg";
 
 const baseUrl = import.meta.env.VITE_END_POINT;
 const email = import.meta.env.VITE_EMAIL_DEV;
-const ButtonAdd = ({ DataCy }) => {
+const ButtonAdd = (props) => {
   const { addActivity } = useActivityStore()
   const handleSubmit = () => {
-    if (DataCy === "activity-add-button") {
+    if (props.DataCy === "activity-add-button") {
       addActivity()
     } else {
-      return ;
+      props.onAddToggle()
     }
   };
   return (
     <button
       onClick={handleSubmit}
-      data-cy={DataCy}
+      data-cy={props.DataCy}
       className="bg-primary flex text-white h-12 pl-7 pr-8 pb-2 pt-1 text-lg gap-2 font-medium leading-3 rounded-[45px] justify-center items-center"
     >
       {" "}

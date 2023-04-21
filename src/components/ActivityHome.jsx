@@ -9,7 +9,7 @@ import SuccessDelete from "./ui/SuccessDelete";
 const ActivityHome = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [notifIsShow, setNotifIsShow] = useState(false);
-  const [curretActivity, setCurrentActivity] = useState({
+  const [currentActivity, setCurrentActivity] = useState({
     id: null,
     title: "",
   });
@@ -40,6 +40,7 @@ const ActivityHome = () => {
   useEffect(() => {
     fetchActivities();
   }, []);
+  
 
   let activityRender;
   if (activities?.length > 0) {
@@ -53,8 +54,6 @@ const ActivityHome = () => {
             date={activity.created_at}
             onDelete={deleteHandler}
             onOpenModal={openModal}
-            onCloseModal={closeModal}
-            showModal={modalIsOpen}
           />
         ))}
       </div>
@@ -80,10 +79,11 @@ const ActivityHome = () => {
     {notifIsShow ? <SuccessDelete msg={notifMsg} onCloseNotif={closeNotif}/> : ''}
       {modalIsOpen ? (
         <DeleteModal
-          id={curretActivity.id}
-          title={curretActivity.title}
+          id={currentActivity.id}
+          title={currentActivity.title}
           onCloseModal={closeModal}
           onDelete={deleteHandler}
+          isOpen={modalIsOpen}
           data="Activity"
         />
       ) : (
