@@ -41,7 +41,7 @@ const ActivityDetails = () => {
   const notifMsg = useTodoStore((state) => state.message);
   const handleSortClick = (e) => {
     e.preventDefault();
-    const value = e.currentTarget.getAttribute("data-cy");
+    const value = e.currentTarget.getAttribute("data-sort");
     switch (value) {
       case "sort-latest":
         sortTodosByIdDescending();
@@ -282,7 +282,8 @@ const ActivityDetails = () => {
             >
               <div
                 onClick={handleSortClick}
-                data-cy="sort-latest"
+                data-sort="sort-latest"
+                data-cy="sort-selection"
                 className="h-[41.4px] lg:h-[52px] gap-4 px-4 flex justify-between cursor-pointer items-center border-b-[1px] border-gray2"
               >
                 <div className="flex items-center gap-x-3">
@@ -347,7 +348,8 @@ const ActivityDetails = () => {
               </div>
               <div
                 onClick={handleSortClick}
-                data-cy="sort-oldest"
+                data-sort="sort-oldest"
+                data-cy="sort-selection"
                 className="h-[41.4px] lg:h-[52px] gap-4 px-4 flex justify-between cursor-pointer items-center border-b-[1px] border-gray2"
               >
                 <div className="flex items-center gap-x-3">
@@ -412,7 +414,8 @@ const ActivityDetails = () => {
               </div>
               <div
                 onClick={handleSortClick}
-                data-cy="sort-az"
+                data-sort="sort-az"
+                data-cy="sort-selection"
                 className="h-[41.4px] lg:h-[52px] gap-4 px-4 flex justify-between cursor-pointer items-center border-b-[1px] border-gray2"
               >
                 <div className="flex items-center gap-x-3">
@@ -471,7 +474,8 @@ const ActivityDetails = () => {
               </div>
               <div
                 onClick={handleSortClick}
-                data-cy="sort-za"
+                data-sort="sort-za"
+                data-cy="sort-selection"
                 className="h-[41.4px] lg:h-[52px] gap-4 px-4 flex justify-between cursor-pointer items-center border-b-[1px] border-gray2"
               >
                 <div className="flex items-center gap-x-3">
@@ -529,7 +533,8 @@ const ActivityDetails = () => {
               </div>
               <div
                 onClick={handleSortClick}
-                data-cy="sort-unfinished"
+                data-sort="sort-unfinished"
+                data-cy="sort-selection"
                 className="h-[41.4px] lg:h-[52px] gap-4 px-4 flex justify-between cursor-pointer items-center"
               >
                 <div className="flex items-center gap-x-3">
