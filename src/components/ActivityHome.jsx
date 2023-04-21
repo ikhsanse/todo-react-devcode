@@ -13,7 +13,7 @@ const ActivityHome = () => {
     id: null,
     title: "",
   });
-  const { activities, gethActivities, deleteActivity, addActivity } = useActivityStore();
+  const { activities, getActivities, deleteActivity, addActivity } = useActivityStore();
   const notifMsg = useActivityStore((state) => state.message);
 
   const openModal = (id, title) => {
@@ -38,7 +38,7 @@ const ActivityHome = () => {
   }
 
   useEffect(() => {
-    gethActivities();
+    getActivities();
   }, []);
   
 
