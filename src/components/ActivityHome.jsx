@@ -13,7 +13,7 @@ const ActivityHome = () => {
     id: null,
     title: "",
   });
-  const { activities, fetchActivities, deleteActivity, addActivity } = useActivityStore();
+  const { activities, gethActivities, deleteActivity, addActivity } = useActivityStore();
   const notifMsg = useActivityStore((state) => state.message);
 
   const openModal = (id, title) => {
@@ -38,7 +38,7 @@ const ActivityHome = () => {
   }
 
   useEffect(() => {
-    fetchActivities();
+    gethActivities();
   }, []);
   
 
@@ -64,12 +64,12 @@ const ActivityHome = () => {
         data-cy="activity-empty-state"
         className="flex py-16 justify-center cursor-pointer"
       >
-        {/* <img
+        <img
           onClick={addActivity}
           className="w-full lg:w-[60%] h-auto"
           src={emptyActivity}
           alt="empty activity"
-        /> */}
+        />
       </div>
     );
   }

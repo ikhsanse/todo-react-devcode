@@ -25,7 +25,7 @@ const useActivityStore = create((set) => ({
       return false;
     }
   },
-  fetchActivities: async () => {
+  getActivities: async () => {
     try {
       const response = await fetch(`${baseUrl}/activity-groups?email=${email}`);
       const data = await response.json();
