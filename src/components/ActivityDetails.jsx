@@ -216,7 +216,7 @@ const ActivityDetails = () => {
             ></input>
           ) : (
             <h1
-              data-cy="todo-title leading-3"
+              data-cy="todo-title"
               className="text-2xl md:text-4xl font-bold"
             >
               {activityValue}

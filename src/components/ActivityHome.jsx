@@ -64,12 +64,12 @@ const ActivityHome = () => {
         data-cy="activity-empty-state"
         className="flex py-16 justify-center cursor-pointer"
       >
-        <img
+        {/* <img
           onClick={addActivity}
           className="w-full lg:w-[60%] h-auto"
           src={emptyActivity}
           alt="empty activity"
-        />
+        /> */}
       </div>
     );
   }
