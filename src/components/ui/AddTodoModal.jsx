@@ -1,6 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import useTodoStore from "../../store/todo";
 
+const priorityOptions = [
+  { value: "very-high", label: "Very High" },
+  { value: "high", label: "High" },
+  { value: "normal", label: "Medium" },
+  { value: "low", label: "Low" },
+  { value: "very-low", label: "Very Low" },
+];
+
 const AddTodoModal = ({ onToggle, isOpen, data, type }) => {
   const [isOpenDropdown, setIsOpenDropdown] = useState(false);
   const [selectedPriority, setSelectedPriority] = useState(
@@ -9,7 +17,6 @@ const AddTodoModal = ({ onToggle, isOpen, data, type }) => {
   const [listItemValue, setListItemValue] = useState(
     type === "add" ? "" : data.title
   );
-  
 
   const addModalRef = useRef();
 
@@ -42,9 +49,9 @@ const AddTodoModal = ({ onToggle, isOpen, data, type }) => {
     setIsOpenDropdown(!isOpenDropdown);
   };
 
-  const handlePriorityClick = (e) => {
-    e.preventDefault();
-    const value = e.currentTarget.getAttribute("data-value");
+  const handlePriorityClick = (value) => {
+    // e.preventDefault();
+    // const value = e.currentTarget.getAttribute("data-value");
     setSelectedPriority(value);
     setIsOpenDropdown(false);
   };
@@ -63,6 +70,7 @@ const AddTodoModal = ({ onToggle, isOpen, data, type }) => {
         priority: selectedPriority ? selectedPriority : "very-high",
       };
       addTodo(dataTodo);
+      // selectedPriority("");
     } else {
       updateTodo(data.id, listItemValue, selectedPriority);
     }
@@ -93,10 +101,10 @@ const AddTodoModal = ({ onToggle, isOpen, data, type }) => {
   let priorityRender;
   if (isOpenDropdown) {
     priorityRender = (
-      <button data-cy="modal-add-priority-button" className="relative">
+      <>
         <div
           onClick={dropdownToggle}
-          className="p-3.5 bg-gray2 rounded-md flex w-[205px] justify-between items-center"
+          className="p-3.5 bg-gray2 rounded-t-md flex w-[205px] justify-between items-center"
         >
           <p data-cy="modal-add-priority-item">Pilih Priority</p>
           <svg
@@ -113,159 +121,42 @@ const AddTodoModal = ({ onToggle, isOpen, data, type }) => {
             ></path>
           </svg>
         </div>
-        <div className="w-[205px] bg-white absolute border-x-[1px] top-[2.8rem] z-10 border-b-[1px] border-gray2 rounded-t-none rounded-md">
-          <div
-            onClick={handlePriorityClick}
-            data-value="very-high"
-            data-cy="modal-add-priority-very-high"
-            className="cursor-pointer p-[14px] flex justify-between border-b-[1px] border-b-gray2"
-          >
-            <div className="flex gap-x-[19px] items-center">
-              <div className="w-3.5 h-3.5 rounded-full bg-very-high"></div>
-              <p className="text-[16px]">Very High</p>
-            </div>
-            {selectedPriority === "very-high" ? (
-              <div>
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 18 18"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M3.75 9L7.5 12.75L15 5.25"
-                    stroke="#4A4A4A"
-                    strokeLinecap="square"
-                  ></path>
-                </svg>
+        <button data-cy="modal-add-priority-button" className="relative">
+          <div className="w-[205px] bg-white absolute border-x-[1px] top-0 z-10 border-gray2 rounded-t-none rounded-md">
+            {priorityOptions.map((option, index) => (
+              <div
+                key={option.value}
+                onClick={() => handlePriorityClick(option.value)}
+                className={`cursor-pointer p-[14px] flex justify-between ${index !== priorityOptions.length - 1 ? 'border-b-[1px] border-b-gray2' : ''} bg-white`}
+              >
+                <div className="flex gap-x-[19px] items-center">
+                  <div
+                    className={`w-3.5 h-3.5 rounded-full bg-${option.value}`}
+                  ></div>
+                  <p className="text-[16px]">{option.label}</p>
+                </div>
+                {selectedPriority === option.value && (
+                  <div>
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 18 18"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M3.75 9L7.5 12.75L15 5.25"
+                        stroke="#4A4A4A"
+                        strokeLinecap="square"
+                      ></path>
+                    </svg>
+                  </div>
+                )}
               </div>
-            ) : (
-              ""
-            )}
+            ))}
           </div>
-          <div
-            onClick={handlePriorityClick}
-            data-value="high"
-            data-cy="modal-add-priority-high"
-            className="cursor-pointer p-3.5 flex items-center justify-between border-b-[1px] border-b-gray2"
-          >
-            <div className="flex gap-x-[19px] items-center">
-              <div className="w-3.5 h-3.5 rounded-full bg-high"></div>
-              <p className="text-[16px]">High</p>
-            </div>
-            {selectedPriority === "high" ? (
-              <div>
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 18 18"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M3.75 9L7.5 12.75L15 5.25"
-                    stroke="#4A4A4A"
-                    strokeLinecap="square"
-                  ></path>
-                </svg>
-              </div>
-            ) : (
-              ""
-            )}
-          </div>
-          <div
-            onClick={handlePriorityClick}
-            data-value="normal"
-            data-cy="modal-add-priority-medium"
-            className="cursor-pointer p-3.5 flex justify-between border-b-[1px] border-b-gray2"
-          >
-            <div className="flex gap-x-[19px] items-center">
-              <div className="w-3.5 h-3.5 rounded-full bg-normal"></div>
-              <p className="text-[16px]">Medium</p>
-            </div>
-            {selectedPriority === "normal" ? (
-              <div>
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 18 18"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M3.75 9L7.5 12.75L15 5.25"
-                    stroke="#4A4A4A"
-                    strokeLinecap="square"
-                  ></path>
-                </svg>
-              </div>
-            ) : (
-              ""
-            )}
-          </div>
-          <div
-            onClick={handlePriorityClick}
-            data-value="low"
-            data-cy="modal-add-priority-low"
-            className="cursor-pointer p-3.5 flex justify-between border-b-[1px] border-b-gray2"
-          >
-            <div className="flex gap-x-[19px] items-center">
-              <div className="w-3.5 h-3.5 rounded-full bg-low"></div>
-              <p className="text-[16px]">Low</p>
-            </div>
-            {selectedPriority === "low" ? (
-              <div>
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 18 18"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M3.75 9L7.5 12.75L15 5.25"
-                    stroke="#4A4A4A"
-                    strokeLinecap="square"
-                  ></path>
-                </svg>
-              </div>
-            ) : (
-              ""
-            )}
-          </div>
-          <div
-            onClick={handlePriorityClick}
-            data-value="very-low"
-            data-cy="modal-add-priority-very-low"
-            className="cursor-pointer p-3.5 flex justify-between border-b-[1px] border-b-gray2"
-          >
-            <div className="flex gap-x-[19px] items-center">
-              <div className="w-3.5 h-3.5 rounded-full bg-very-low"></div>
-              <p className="text-[16px]">Very Low</p>
-            </div>
-            {selectedPriority === "very-low" ? (
-              <div>
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 18 18"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M3.75 9L7.5 12.75L15 5.25"
-                    stroke="#4A4A4A"
-                    strokeLinecap="square"
-                  ></path>
-                </svg>
-              </div>
-            ) : (
-              ""
-            )}
-          </div>
-        </div>
-      </button>
+        </button>
+      </>
     );
   } else {
     priorityRender = (
@@ -350,7 +241,7 @@ const AddTodoModal = ({ onToggle, isOpen, data, type }) => {
           >
             Priority
           </label>
-          <div>{priorityRender}</div>
+          {priorityRender}
         </div>
         <div className="border-gray2 border-t px-10 py-5">
           <button
