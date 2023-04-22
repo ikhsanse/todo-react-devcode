@@ -13,7 +13,8 @@ const ActivityHome = () => {
     id: null,
     title: "",
   });
-  const { activities, getActivities, deleteActivity, addActivity } = useActivityStore();
+  const { activities, getActivities, deleteActivity, addActivity } =
+    useActivityStore();
   const notifMsg = useActivityStore((state) => state.message);
 
   const openModal = (id, title) => {
@@ -28,19 +29,18 @@ const ActivityHome = () => {
     const deleted = await deleteActivity(id);
     if (deleted) {
       setNotifIsShow(true);
-      setModalIsOpen(false)
+      setModalIsOpen(false);
     } else {
       setNotifIsShow(false);
     }
   };
   const closeNotif = () => {
-    setNotifIsShow(false)
-  }
+    setNotifIsShow(false);
+  };
 
   useEffect(() => {
     getActivities();
   }, []);
-  
 
   let activityRender;
   if (activities?.length > 0) {
@@ -76,7 +76,11 @@ const ActivityHome = () => {
 
   return (
     <>
-    {notifIsShow ? <SuccessDelete msg={notifMsg} onCloseNotif={closeNotif}/> : ''}
+      {notifIsShow ? (
+        <SuccessDelete msg={notifMsg} onCloseNotif={closeNotif} />
+      ) : (
+        ""
+      )}
       {modalIsOpen ? (
         <DeleteModal
           id={currentActivity.id}

@@ -6,7 +6,7 @@ import AddTodoModal from "./ui/AddTodoModal";
 import useTodoStore from "../store/todo";
 import SuccessDelete from "./ui/SuccessDelete";
 import DeleteModal from "./ui/DeleteModal";
-import emptyTodo from '../assets/emptytodo.png'
+import emptyTodo from "../assets/emptytodo.png";
 
 const baseUrl = import.meta.env.VITE_END_POINT;
 
@@ -215,10 +215,7 @@ const ActivityDetails = () => {
               value={activityValue}
             ></input>
           ) : (
-            <h1
-              data-cy="todo-title"
-              className="text-2xl md:text-4xl font-bold"
-            >
+            <h1 data-cy="todo-title" className="text-2xl md:text-4xl font-bold">
               {activityValue}
             </h1>
           )}

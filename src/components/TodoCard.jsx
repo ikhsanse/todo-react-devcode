@@ -47,7 +47,10 @@ const TodoCard = ({
           >
             {title}
           </h3>
-          <button onClick={()=>onEditModal(id, title, priority)} data-cy="todo-item-edit-button">
+          <button
+            onClick={() => onEditModal(id, title, priority)}
+            data-cy="todo-item-edit-button"
+          >
             <svg
               width="24"
               height="24"

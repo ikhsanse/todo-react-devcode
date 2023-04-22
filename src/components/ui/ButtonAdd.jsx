@@ -5,12 +5,12 @@ import iconPlus from "../../assets/iconplus.svg";
 const baseUrl = import.meta.env.VITE_END_POINT;
 const email = import.meta.env.VITE_EMAIL_DEV;
 const ButtonAdd = (props) => {
-  const { addActivity } = useActivityStore()
+  const { addActivity } = useActivityStore();
   const handleSubmit = () => {
     if (props.DataCy === "activity-add-button") {
-      addActivity()
+      addActivity();
     } else {
-      props.onAddToggle()
+      props.onAddToggle();
     }
   };
   return (

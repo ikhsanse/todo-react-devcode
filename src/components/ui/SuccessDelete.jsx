@@ -2,7 +2,10 @@ import React from "react";
 
 const SuccessDelete = ({ msg, onCloseNotif }) => {
   return (
-    <div onClick={onCloseNotif} className="fixed inset-0 z-40 flex items-center justify-center bg-black bg-opacity-75">
+    <div
+      onClick={onCloseNotif}
+      className="fixed inset-0 z-40 flex items-center justify-center bg-black bg-opacity-75"
+    >
       <div className="fixed inset-x-2g md:inset-x-0 top-1/2 z-40 flex items-center justify-center">
         <div
           data-cy="modal-information"

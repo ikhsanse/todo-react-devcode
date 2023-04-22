@@ -17,7 +17,7 @@ const useActivityStore = create((set) => ({
       // console.log(data);
       set((state) => ({
         activities: state.activities.filter((activity) => activity.id !== id),
-        message: 'Activity berhasil dihapus'
+        message: "Activity berhasil dihapus",
       }));
       return true;
     } catch (error) {
@@ -38,16 +38,13 @@ const useActivityStore = create((set) => ({
   },
   addActivity: async () => {
     try {
-      const response = await fetch(
-        `${baseUrl}/activity-groups`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ title: "New Activity", email: email }),
-        }
-      );
+      const response = await fetch(`${baseUrl}/activity-groups`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ title: "New Activity", email: email }),
+      });
 
       const data = await response.json();
       set((state) => ({ activities: [data, ...state.activities] }));
