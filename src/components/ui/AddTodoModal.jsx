@@ -125,7 +125,7 @@ const AddTodoModal = ({ onToggle, isOpen, data, type }) => {
           <div className="w-[205px] bg-white absolute border-x-[1px] top-0 z-10 border-gray2 rounded-t-none rounded-md">
             {priorityOptions.map((option, index) => (
               <div
-                key={option.value}
+                key={option.index}
                 onClick={() => handlePriorityClick(option.value)}
                 className={`cursor-pointer p-[14px] flex justify-between ${index !== priorityOptions.length - 1 ? 'border-b-[1px] border-b-gray2' : ''} bg-white`}
               >

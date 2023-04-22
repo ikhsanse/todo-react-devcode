@@ -110,7 +110,7 @@ const ActivityDetails = () => {
     fetchItem();
   }, [id]);
 
-  const updateActivity = async (title) => {
+  const updateTodoTitle = async (title) => {
     try {
       const response = await fetch(`${baseUrl}/activity-groups/${id}`, {
         method: "PATCH",
@@ -132,7 +132,7 @@ const ActivityDetails = () => {
 
   const closeEditField = async () => {
     setShowEditField(false);
-    await updateActivity(activityValue);
+    await updateTodoTitle(activityValue);
   };
 
   const editHandler = (e) => {
