@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useActivityStore from "../store/activity";
 import ButtonAdd from "./ui/ButtonAdd";
-import emptyActivity from "../assets/emptyactivity.png";
+import emptyActivity from '/public/images/emptyactivity.png';
 import ActivityCard from "./ActivityCard";
 import DeleteModal from "./ui/DeleteModal";
 import SuccessDelete from "./ui/SuccessDelete";
@@ -65,6 +65,7 @@ const ActivityHome = () => {
         className="flex py-16 justify-center cursor-pointer"
       >
         <img
+          loading="lazy"
           onClick={addActivity}
           className="w-full lg:w-[60%] h-auto"
           src={emptyActivity}
